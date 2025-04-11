@@ -38,7 +38,25 @@ public class CRUDTest {
         mockMvc.perform(get("/crud?id=" + id))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Dog"));
-    }
+
+        //Update
+        mockMvc.perform(put("/crud/"+id).content("Cat").contentType(MediaType.TEXT_PLAIN))
+                .andExpect(status().isOk());
+
+        //Retrieve
+        mockMvc.perform(get("/crud?id=" + id))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Cat"));
+
+        //Delete
+        mockMvc.perform(delete("/crud/" + id)).andExpect(status().isOk());
+
+
+        //Retrieve the deleted one
+//        mockMvc.perform(get("/crud?id=" + id))
+//            .andExpect(status().isGone());
+
+}
 
 }
 

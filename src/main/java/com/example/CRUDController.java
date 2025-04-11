@@ -28,4 +28,32 @@ public class CRUDController {
     ResponseEntity<String> getString(@RequestParam("id") Long id) {
         return ResponseEntity.ok().body(CRUDMap.get(id));
     }
+
+    /*@DeleteMapping
+    ResponseEntity<Void> deleteString(@RequestParam("id") Long id) {
+        log.info("Delete Value: " + id);
+        CRUDMap.remove(id);
+        return ResponseEntity.ok().build();
+    } */
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteString(@PathVariable("id") Long id) {
+        if (CRUDMap.containsKey(id)) {
+            log.info("Delete Value: " + id);
+            CRUDMap.remove(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateString(@PathVariable("id") Long id, @RequestBody String value) {
+        if (CRUDMap.containsKey(id)) {
+            log.info("Update Value: " + value);
+            CRUDMap.put(id, value);
+            return ResponseEntity.ok().build();
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
 }
