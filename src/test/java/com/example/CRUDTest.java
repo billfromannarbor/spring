@@ -53,8 +53,8 @@ public class CRUDTest {
 
 
         //Retrieve the deleted one
-//        mockMvc.perform(get("/crud?id=" + id))
-//            .andExpect(status().isGone());
+        mockMvc.perform(get("/crud?id=" + id))
+            .andExpect(status().is4xxClientError());
 
 }
 

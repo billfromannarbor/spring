@@ -26,15 +26,13 @@ public class CRUDController {
 
     @GetMapping
     ResponseEntity<String> getString(@RequestParam("id") Long id) {
-        return ResponseEntity.ok().body(CRUDMap.get(id));
+        if ( CRUDMap.containsKey(id) ) {
+            return ResponseEntity.ok().body(CRUDMap.get(id));
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
-    /*@DeleteMapping
-    ResponseEntity<Void> deleteString(@RequestParam("id") Long id) {
-        log.info("Delete Value: " + id);
-        CRUDMap.remove(id);
-        return ResponseEntity.ok().build();
-    } */
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteString(@PathVariable("id") Long id) {
