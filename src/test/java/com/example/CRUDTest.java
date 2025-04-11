@@ -35,7 +35,7 @@ public class CRUDTest {
         Long id = Long.parseLong(idAsString);
 
         //Retrieve
-        mockMvc.perform(get("/crud?id=" + id))
+        mockMvc.perform(get("/crud/" + id))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Dog"));
 
@@ -44,7 +44,7 @@ public class CRUDTest {
                 .andExpect(status().isOk());
 
         //Retrieve
-        mockMvc.perform(get("/crud?id=" + id))
+        mockMvc.perform(get("/crud/" + id))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("Cat"));
 
@@ -53,7 +53,7 @@ public class CRUDTest {
 
 
         //Retrieve the deleted one
-        mockMvc.perform(get("/crud?id=" + id))
+        mockMvc.perform(get("/crud/" + id))
             .andExpect(status().is4xxClientError());
 
 }

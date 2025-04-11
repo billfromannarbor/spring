@@ -24,8 +24,8 @@ public class CRUDController {
 
     }
 
-    @GetMapping
-    ResponseEntity<String> getString(@RequestParam("id") Long id) {
+    @GetMapping("/{id}")
+    ResponseEntity<String> getString(@PathVariable("id") Long id) {
         if ( CRUDMap.containsKey(id) ) {
             return ResponseEntity.ok().body(CRUDMap.get(id));
         }
