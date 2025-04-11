@@ -1,0 +1,16 @@
+# Kubernetes - service definition
+aapiVersion: v1
+kind: Service
+metadata:
+  name: spring-app
+  labels:
+    app: spring-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8085
+    targetPort: 8085
+    protocol: TCP
+    name: http
+  selector:
+    app: spring-app 
