@@ -13,5 +13,5 @@ public class DemoApplication {
     }
 
     @GetMapping
-    public String hello() {return "hello";}
+    public String hello() {return "Spring demo application";}
 } 
