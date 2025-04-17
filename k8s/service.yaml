@@ -5,10 +5,11 @@ metadata:
   labels:
     app: spring-app
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 8085
       targetPort: 8085
+      nodePort: 30085
       protocol: TCP
       name: http
   selector:

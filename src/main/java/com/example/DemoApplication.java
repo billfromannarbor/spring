@@ -12,6 +12,16 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
+    public final int dogcat() {
+        return 3;
+    }
+
     @GetMapping
-    public String hello() {return "Spring demo application";}
+    public String hello() {
+        final int dog;
+        dog = 3;
+
+        return "Spring demo application";
+
+    }
 } 

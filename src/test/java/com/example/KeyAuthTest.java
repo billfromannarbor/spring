@@ -7,10 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvc.*;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,7 +24,8 @@ public class KeyAuthTest {
     @Test
     void keyAuthTest() throws Exception {
         mockMvc.perform(get("/keyauth").header(FilterOnAuthHeader.headerName,FilterOnAuthHeader.expectedApiKey))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("You are Authorized"));
     }
 }
 
